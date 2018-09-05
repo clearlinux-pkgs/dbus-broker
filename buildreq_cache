@@ -1,0 +1,5 @@
+15
+pkgconfig(dbus-1)
+pkgconfig(expat)
+pkgconfig(glib-2.0)
+pkgconfig(libsystemd)
