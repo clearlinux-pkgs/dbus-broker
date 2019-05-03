@@ -1,7 +1,8 @@
-19
+21
 expat-dev
 pkgconfig(dbus-1)
 pkgconfig(expat)
 pkgconfig(glib-2.0)
+pkgconfig(libdbus-typenum)
 pkgconfig(libsystemd)
 pkgconfig(systemd)
