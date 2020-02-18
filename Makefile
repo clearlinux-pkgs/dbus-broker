@@ -1,5 +1,5 @@
 PKG_NAME := dbus-broker
-URL = https://github.com/bus1/dbus-broker/releases/download/v21/dbus-broker-21.tar.xz
+URL = https://github.com/bus1/dbus-broker/releases/download/v22/dbus-broker-22.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
