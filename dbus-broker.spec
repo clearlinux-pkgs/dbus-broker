@@ -4,10 +4,9 @@
 #
 Name     : dbus-broker
 Version  : 24
-Release  : 8
+Release  : 9
 URL      : https://github.com/bus1/dbus-broker/releases/download/v24/dbus-broker-24.tar.xz
 Source0  : https://github.com/bus1/dbus-broker/releases/download/v24/dbus-broker-24.tar.xz
-Source1  : use-private-network.service
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
@@ -19,7 +18,7 @@ BuildRequires : expat-dev
 BuildRequires : pkgconfig(expat)
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(systemd)
-Patch1: use-private-network.service
+Patch1: use-private-network.patch
 
 %description
 # dbus-broker - Linux D-Bus Message Broker
@@ -66,7 +65,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1599597135
+export SOURCE_DATE_EPOCH=1601927244
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -89,8 +88,6 @@ meson test -C builddir
 mkdir -p %{buildroot}/usr/share/package-licenses/dbus-broker
 cp %{_builddir}/dbus-broker-24/LICENSE %{buildroot}/usr/share/package-licenses/dbus-broker/94c6ae483469d0109b64bb6ad7f33af3fa42435d
 DESTDIR=%{buildroot} ninja -C builddir install
-mkdir -p %{buildroot}/usr/lib/systemd/system
-install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/use-private-network.service
 
 %files
 %defattr(-,root,root,-)
@@ -109,5 +106,4 @@ install -m 0644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/use-private-netwo
 %files services
 %defattr(-,root,root,-)
 /usr/lib/systemd/system/dbus-broker.service
-/usr/lib/systemd/system/use-private-network.service
 /usr/lib/systemd/user/dbus-broker.service
