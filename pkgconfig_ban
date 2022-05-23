@@ -1,3 +1,10 @@
 # This file contains pkgconfig build requirements that get picked up
 # but are undesirable. One entry per line, no whitespace.
 libdbus-typenum
+libcdvar-1
+libcini-1
+libclist-3
+libcrbtree-3
+libcshquote-1
+libcstdaux-1
+libcutf8-1
