@@ -1,5 +1,12 @@
 31
 expat-dev
 pkgconfig(expat)
+pkgconfig(libcdvar-1)
+pkgconfig(libcini-1)
+pkgconfig(libclist-3)
+pkgconfig(libcrbtree-3)
+pkgconfig(libcshquote-1)
+pkgconfig(libcstdaux-1)
+pkgconfig(libcutf8-1)
 pkgconfig(libsystemd)
 pkgconfig(systemd)

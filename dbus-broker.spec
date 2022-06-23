@@ -4,13 +4,14 @@
 #
 Name     : dbus-broker
 Version  : 31
-Release  : 15
+Release  : 16
 URL      : https://github.com/bus1/dbus-broker/releases/download/v31/dbus-broker-31.tar.xz
 Source0  : https://github.com/bus1/dbus-broker/releases/download/v31/dbus-broker-31.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: dbus-broker-bin = %{version}-%{release}
+Requires: dbus-broker-filemap = %{version}-%{release}
 Requires: dbus-broker-license = %{version}-%{release}
 Requires: dbus-broker-services = %{version}-%{release}
 BuildRequires : buildreq-meson
@@ -34,9 +35,18 @@ Summary: bin components for the dbus-broker package.
 Group: Binaries
 Requires: dbus-broker-license = %{version}-%{release}
 Requires: dbus-broker-services = %{version}-%{release}
+Requires: dbus-broker-filemap = %{version}-%{release}
 
 %description bin
 bin components for the dbus-broker package.
+
+
+%package filemap
+Summary: filemap components for the dbus-broker package.
+Group: Default
+
+%description filemap
+filemap components for the dbus-broker package.
 
 
 %package license
@@ -59,13 +69,16 @@ services components for the dbus-broker package.
 %setup -q -n dbus-broker-31
 cd %{_builddir}/dbus-broker-31
 %patch1 -p1
+pushd ..
+cp -a dbus-broker-31 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1653340265
+export SOURCE_DATE_EPOCH=1656018859
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -76,6 +89,8 @@ export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
+CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddiravx2
+ninja -v -C builddiravx2
 
 %check
 export LANG=C.UTF-8
@@ -87,7 +102,9 @@ meson test -C builddir --print-errorlogs
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/dbus-broker
 cp %{_builddir}/dbus-broker-31/LICENSE %{buildroot}/usr/share/package-licenses/dbus-broker/94c6ae483469d0109b64bb6ad7f33af3fa42435d
+DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 DESTDIR=%{buildroot} ninja -C builddir install
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -98,6 +115,11 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %defattr(-,root,root,-)
 /usr/bin/dbus-broker
 /usr/bin/dbus-broker-launch
+/usr/share/clear/optimized-elf/bin*
+
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-dbus-broker
 
 %files license
 %defattr(0644,root,root,0755)
