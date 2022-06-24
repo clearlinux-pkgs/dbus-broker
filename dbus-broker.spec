@@ -4,7 +4,7 @@
 #
 Name     : dbus-broker
 Version  : 31
-Release  : 16
+Release  : 17
 URL      : https://github.com/bus1/dbus-broker/releases/download/v31/dbus-broker-31.tar.xz
 Source0  : https://github.com/bus1/dbus-broker/releases/download/v31/dbus-broker-31.tar.xz
 Summary  : No detailed summary available
@@ -78,7 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656018859
+export SOURCE_DATE_EPOCH=1656101121
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
