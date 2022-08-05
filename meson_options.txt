@@ -1,1 +1,7 @@
-option('reference-test', type: 'boolean', value: false, description: 'Run tests against reference implementation')
+option(
+        'version-scripts',
+        choices: ['yes', 'no', 'auto'],
+        description: 'Enable GNU-version-scripts for linking',
+        type: 'combo',
+        value: 'auto',
+)
