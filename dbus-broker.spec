@@ -4,7 +4,7 @@
 #
 Name     : dbus-broker
 Version  : 32
-Release  : 19
+Release  : 20
 URL      : https://github.com/bus1/dbus-broker/releases/download/v32/dbus-broker-32.tar.xz
 Source0  : https://github.com/bus1/dbus-broker/releases/download/v32/dbus-broker-32.tar.xz
 Summary  : No detailed summary available
