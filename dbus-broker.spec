@@ -6,7 +6,7 @@
 #
 Name     : dbus-broker
 Version  : 33
-Release  : 25
+Release  : 26
 URL      : https://github.com/bus1/dbus-broker/releases/download/v33/dbus-broker-33.tar.xz
 Source0  : https://github.com/bus1/dbus-broker/releases/download/v33/dbus-broker-33.tar.xz
 Source1  : https://github.com/bus1/dbus-broker/releases/download/v33/dbus-broker-33.tar.xz.asc
@@ -85,7 +85,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1675455768
+export SOURCE_DATE_EPOCH=1675457373
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -111,6 +111,8 @@ mkdir -p %{buildroot}/usr/share/package-licenses/dbus-broker
 cp %{_builddir}/dbus-broker-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/dbus-broker/94c6ae483469d0109b64bb6ad7f33af3fa42435d || :
 DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 DESTDIR=%{buildroot} ninja -C builddir install
+## Remove excluded files
+rm -f %{buildroot}*/usr/lib/systemd/system/dbus-broker.service
 /usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
@@ -134,5 +136,4 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files services
 %defattr(-,root,root,-)
-/usr/lib/systemd/system/dbus-broker.service
 /usr/lib/systemd/user/dbus-broker.service
