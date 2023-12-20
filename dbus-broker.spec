@@ -8,11 +8,11 @@
 # Source0 file verified with key 0x7A4F3A09EBDEFF26 (dh.herrmann@googlemail.com)
 #
 Name     : dbus-broker
-Version  : 34
-Release  : 30
-URL      : https://github.com/bus1/dbus-broker/releases/download/v34/dbus-broker-34.tar.xz
-Source0  : https://github.com/bus1/dbus-broker/releases/download/v34/dbus-broker-34.tar.xz
-Source1  : https://github.com/bus1/dbus-broker/releases/download/v34/dbus-broker-34.tar.xz.asc
+Version  : 35
+Release  : 31
+URL      : https://github.com/bus1/dbus-broker/releases/download/v35/dbus-broker-35.tar.xz
+Source0  : https://github.com/bus1/dbus-broker/releases/download/v35/dbus-broker-35.tar.xz
+Source1  : https://github.com/bus1/dbus-broker/releases/download/v35/dbus-broker-35.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
@@ -67,11 +67,11 @@ services components for the dbus-broker package.
 
 
 %prep
-%setup -q -n dbus-broker-34
-cd %{_builddir}/dbus-broker-34
+%setup -q -n dbus-broker-35
+cd %{_builddir}/dbus-broker-35
 %patch -P 1 -p1
 pushd ..
-cp -a dbus-broker-34 buildavx2
+cp -a dbus-broker-35 buildavx2
 popd
 
 %build
@@ -79,7 +79,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1702915126
+export SOURCE_DATE_EPOCH=1703101327
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib

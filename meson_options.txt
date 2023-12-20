@@ -1,7 +1,1 @@
-option(
-        'version-scripts',
-        choices: ['yes', 'no', 'auto'],
-        description: 'Enable GNU-version-scripts for linking',
-        type: 'combo',
-        value: 'auto',
-)
+option('ptrace', type: 'boolean', value: false, description: 'Allow ptrace in test suite')
